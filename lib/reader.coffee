@@ -1,6 +1,6 @@
 path 		= require 'path'
 _ 			= require 'lodash'
-async 		= require 'async'
+async 	= require 'async'
 HID			= require 'node-hid'
 When 		= require 'when'
 
@@ -53,7 +53,6 @@ Current Required (mA):	100
 ###
 
 
-
 buffer = ''
 empty_reads = 0
 listen_for_empty = false
@@ -63,7 +62,8 @@ getRFIDReader = ->
 	deferred = When.defer()
 
 	devices = HID.devices()
-	rfidreader = _.find devices, (d) -> d.manufacturer is 'RFIDeas'
+	# console.log(devices);
+	rfidreader = _.find devices, (d) -> d.manufacturer is 'HXGCoLtd'
 
 	if rfidreader? and rfidreader.path?
 		deferred.resolve new HID.HID( rfidreader.path )
@@ -71,7 +71,6 @@ getRFIDReader = ->
 		deferred.reject new Error('no rfid reader found')
 
 	deferred.promise
-
 
 
 readIDs = (data, cb) ->
@@ -90,7 +89,6 @@ readIDs = (data, cb) ->
 	else if data[0] is 0 and data[2] is 0
 		#read was empty
 		empty_reads += 1 if listen_for_empty
-		
 
 
 	# if buffer.length >= tag_length
@@ -101,10 +99,10 @@ readIDs = (data, cb) ->
 		console.log "rfid is:".green, buffer
 		buffer = ''
 
+	# console.log buffer.blue
+
 deviceError = (err, cb) ->
-	console.error 'RDIF read error'.red, err
-
-
+	console.error 'RFID read error'.red, err
 
 
 
@@ -115,10 +113,9 @@ module.exports = (idReadCb=null, errorCB=null) ->
 		device.on "data", (data) ->
 			readIDs data, idReadCb
 
-
 		device.on "error", (err) ->
 			deviceError err, errorCB
 
 	.catch (err) ->
 		console.error 'No RFID reader found'.red, err
-		prcoess.exit(0)
+		process.exit(0)

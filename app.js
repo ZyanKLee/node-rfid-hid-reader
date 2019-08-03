@@ -1,4 +1,4 @@
-require('coffee-script/register');
+require('coffeescript/register');
 require('colors');
 
 global.__base = __dirname;
