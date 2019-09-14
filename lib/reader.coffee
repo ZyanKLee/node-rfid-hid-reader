@@ -98,9 +98,9 @@ getRFIDReader = ->
   rfidreader = _.find devices, (d) -> d.manufacturer is 'HXGCoLtd'
 
   if rfidreader? and rfidreader.path?
-  deferred.resolve new HID.HID( rfidreader.path )
+    deferred.resolve new HID.HID( rfidreader.path )
   else
-  deferred.reject new Error('no rfid reader found')
+    deferred.reject new Error('no rfid reader found')
 
   deferred.promise
 
@@ -113,23 +113,23 @@ readIDs = (data, cb) ->
   # console.log typeof key, key
 
   if table?[key]?
-  buffer += table[key]
-  # start listening for empty reads
-  empty_reads = 0
-  listen_for_empty = true
+    buffer += table[key]
+    # start listening for empty reads
+    empty_reads = 0
+    listen_for_empty = true
 
   else if data[0] is 0 and data[2] is 0
-  #read was empty
-  empty_reads += 1 if listen_for_empty
+    #read was empty
+    empty_reads += 1 if listen_for_empty
 
 
   # if buffer.length >= tag_length
   # if we hit X empty reads, stop listening and output RFID buffer string
   if empty_reads >= empty_reads_mark_finish
-  empty_reads = 0
-  listen_for_empty = false
-  console.log "rfid is:".green, buffer
-  buffer = ''
+    empty_reads = 0
+    listen_for_empty = false
+    console.log "rfid is:".green, buffer
+    buffer = ''
 
   # console.log buffer.blue
 
@@ -141,13 +141,13 @@ deviceError = (err, cb) ->
 module.exports = (idReadCb=null, errorCB=null) ->
   #get rfid device
   getRFIDReader().then (device) ->
-  #setup device events
-  device.on "data", (data) ->
-    readIDs data, idReadCb
+    #setup device events
+    device.on "data", (data) ->
+      readIDs data, idReadCb
 
-  device.on "error", (err) ->
-    deviceError err, errorCB
+    device.on "error", (err) ->
+      deviceError err, errorCB
 
   .catch (err) ->
-  console.error 'No RFID reader found'.red, err
-  process.exit(0)
+    console.error 'No RFID reader found'.red, err
+    process.exit(0)
