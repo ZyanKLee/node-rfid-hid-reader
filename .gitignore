@@ -1,5 +1,5 @@
 ###OSX###
- 
+
 .DS_Store
 
 # Thumbnails
@@ -10,7 +10,7 @@
 .Trashes
 
 ###SublimeText###
- 
+
 # SublimeText project files
 /*.sublime-project
 *.sublime-workspace
@@ -18,7 +18,7 @@
 
 
 ###SASS###
- 
+
 ### SASS Ignores - "Sassy CSS" http://sass-lang.com/
 .sass-cache
 
@@ -28,7 +28,7 @@
 
 
 ###Node###
- 
+
 lib-cov
 *.seed
 *.log
