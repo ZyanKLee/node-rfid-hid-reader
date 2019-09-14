@@ -44,6 +44,7 @@ results
 
 npm-debug.log
 node_modules
+package-lock.json
 .tmp
 assets/bower_components
 !.gitkeep

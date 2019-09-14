@@ -7,49 +7,81 @@ When   = require 'when'
 tables = require path.join( global.__base, "configs", "tables" )
 
 # tag_length  = 13
-tag_length  = 8
+tag_length  = 10
 # how many empty reads before we can assume input has ended?
 empty_reads_mark_finish = 5
 
 ### RFID Reader
-Product ID:  0x3bfa  - 15354
-Vendor ID:  0x0c27  - 3111
-Version:  8.30
-Speed:  Up to 1.5 Mb/sec
-Manufacturer:  RFIDeas
-Location ID:  0x14113000 / 24    - 336670720
-Current Available (mA):  500
-Current Required (mA):  100
 
-{ vendorId: 3111,
-  productId: 15354,
-  path: 'USB_0c27_3bfa_14113000',
-  serialNumber: '',
-  manufacturer: 'RFIDeas',
-  product: 'USB Keyboard',
-  release: 2096,
-  interface: -1,
-  usagePage: 1,
-  usage: 6 },
-
-
-{ busNumber: 20,
-  deviceAddress: 24,
-  deviceDescriptor:
-   { bLength: 18,
-     bDescriptorType: 1,
-     bcdUSB: 272,
-     bDeviceClass: 0,
-     bDeviceSubClass: 0,
-     bDeviceProtocol: 0,
-     bMaxPacketSize0: 8,
-     idVendor: 3111,
-     idProduct: 15354,
-     bcdDevice: 2096,
-     iManufacturer: 1,
-     iProduct: 2,
-     iSerialNumber: 0,
-     bNumConfigurations: 1 } }
+Bus 001 Device 003: ID 16c0:27db Van Ooijen Technische Informatica Keyboard
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               1.10
+  bDeviceClass            0 (Defined at Interface level)
+  bDeviceSubClass         0
+  bDeviceProtocol         0
+  bMaxPacketSize0         8
+  idVendor           0x16c0 Van Ooijen Technische Informatica
+  idProduct          0x27db Keyboard
+  bcdDevice            0.01
+  iManufacturer           1 HXGCoLtd
+  iProduct                0
+  iSerial                 0
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength           41
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0
+    bmAttributes         0xa0
+      (Bus Powered)
+      Remote Wakeup
+    MaxPower              500mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           2
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      0 No Subclass
+      bInterfaceProtocol      0 None
+      iInterface              0
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.10
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 Report
+          wDescriptorLength      61
+         Report Descriptors:
+           ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval              10
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x01  EP 1 OUT
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval              10
+Device Status:     0x0000
+  (Bus Powered)
 ###
 
 
